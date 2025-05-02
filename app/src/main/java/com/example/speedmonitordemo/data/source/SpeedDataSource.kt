@@ -1,5 +1,5 @@
 package com.example.speedmonitordemo.data.source
-<<<<<<< HEAD
+
 /**
  * Local in-memory data source to store speed limits for customers.
  */
@@ -7,7 +7,6 @@ class SpeedDataSource {
 
     private val speedLimits: MutableMap<String, Int> = mutableMapOf()
 
-=======
 
 /**
  * Local in-memory data source to store speed limits for customers.
@@ -27,17 +26,14 @@ class SpeedDataSource {
      * @param customerId The unique identifier for the customer.
      * @param limit The speed limit to be set for the customer.
      */
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
     fun setLimit(customerId: String, limit: Int) {
         speedLimits[customerId] = limit
     }
 
-<<<<<<< HEAD
     fun getLimit(customerId: String): Int? {
         return speedLimits[customerId]
     }
 }
-=======
     /**
      * Retrieves the speed limit for a specific customer.
      *
@@ -48,4 +44,3 @@ class SpeedDataSource {
         return speedLimits[customerId]
     }
 }
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)

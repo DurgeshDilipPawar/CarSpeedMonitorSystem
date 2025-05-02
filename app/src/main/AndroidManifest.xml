@@ -3,10 +3,9 @@
     package="com.example.speedmonitordemo">
 
     <!-- Permissions -->
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-=======
+
     <!-- Permission to access the internet for sending/receiving data -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,7 +13,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <!-- Permission to access the device's coarse location as a fallback -->
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- Application Configuration -->
@@ -41,10 +39,8 @@
         </activity>
 
         <!-- Firebase Messaging Service -->
-<<<<<<< HEAD
-=======
+
         <!-- Service for receiving Firebase Cloud Messages (e.g., notifications) -->
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
             android:exported="false">
@@ -54,10 +50,8 @@
         </service>
 
         <!-- Firebase Analytics -->
-<<<<<<< HEAD
-=======
+
         <!-- Enables Firebase Analytics to track events and user interactions -->
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
         <meta-data
             android:name="com.google.firebase.analytics.APP_MEASUREMENT_ENABLED"
             android:value="true" />

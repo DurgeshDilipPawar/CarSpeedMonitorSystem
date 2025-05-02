@@ -1,17 +1,11 @@
-<<<<<<< HEAD
-package com.example.speedmonitordemo
-=======
 package com.example.speedmonitordemo.utils
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-<<<<<<< HEAD
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
-=======
 /**
  * Service class for handling Firebase messaging.
  * This class extends [FirebaseMessagingService] and is responsible for receiving and processing
@@ -27,7 +21,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      *
      * @param remoteMessage The [RemoteMessage] object containing the notification and/or data payload.
      */
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // Check if the message contains a notification
         if (remoteMessage.notification != null) {
@@ -40,8 +33,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
-<<<<<<< HEAD
-=======
+
     /**
      * Called when a new Firebase token is generated.
      *
@@ -51,7 +43,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
      *
      * @param token The new Firebase token associated with the device.
      */
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         // Handle the new token (e.g., send it to your server if needed)

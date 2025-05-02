@@ -1,11 +1,11 @@
 package com.example.speedmonitordemo.domain
-<<<<<<< HEAD
+
 class SpeedMonitorUseCase {
     fun isSpeedExceeded(userSpeed: Int, speedLimit: Int): Boolean {
         return userSpeed > speedLimit
     }
 }
-=======
+
 
 /**
  * Use case class to handle the business logic related to speed monitoring.
@@ -24,4 +24,3 @@ class SpeedMonitorUseCase {
         return userSpeed > speedLimit
     }
 }
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)

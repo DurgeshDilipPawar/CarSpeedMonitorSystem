@@ -12,7 +12,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /**
-<<<<<<< HEAD
  * ViewModel for monitoring speed and notifying if the speed exceeds limit.
  */
 class SpeedMonitorViewModel(private val repository: SpeedMonitorRepository) : ViewModel() {
@@ -23,7 +22,7 @@ class SpeedMonitorViewModel(private val repository: SpeedMonitorRepository) : Vi
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-=======
+/**
  * ViewModel for monitoring speed and notifying if the speed exceeds the limit.
  * It interacts with the repository to fetch the speed limit and sends notifications
  * if the speed exceeds the limit.
@@ -48,17 +47,14 @@ class SpeedMonitorViewModel(private val repository: SpeedMonitorRepository) : Vi
      * @param customerId The ID of the customer.
      * @param speedLimit The speed limit to be set for the customer.
      */
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
     fun setSpeedLimit(customerId: String, speedLimit: Int) {
         repository.setSpeedLimit(customerId, speedLimit)
     }
 
-<<<<<<< HEAD
     fun checkSpeed(customerId: String, currentSpeed: Int) {
         uiScope.launch {
             val limit = repository.getSpeedLimit(customerId)
             if (limit != null && currentSpeed > limit) {
-=======
     /**
      * Checks if the current speed exceeds the speed limit for a specific customer.
      * If exceeded, it sends an alert and updates the [speedAlert] LiveData.
@@ -74,17 +70,14 @@ class SpeedMonitorViewModel(private val repository: SpeedMonitorRepository) : Vi
             // Check if the current speed exceeds the limit
             if (limit != null && currentSpeed > limit) {
                 // Create a new SpeedAlert object and update LiveData
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
                 _speedAlert.value = SpeedAlert(
                     customerId = customerId,
                     currentSpeed = currentSpeed,
                     limit = limit,
                     message = "Speed limit exceeded!"
                 )
-<<<<<<< HEAD
-=======
+
                 // Send notification using repository
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
                 repository.sendAlertNotification(customerId, currentSpeed, limit)
             } else {
                 _speedAlert.value = null
@@ -92,13 +85,10 @@ class SpeedMonitorViewModel(private val repository: SpeedMonitorRepository) : Vi
         }
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Cancels the ongoing coroutines when the ViewModel is cleared.
      * This helps to avoid memory leaks by canceling background work.
      */
->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
