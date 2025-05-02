@@ -2,14 +2,6 @@ package com.example.speedmonitordemo.data.source
 
 /**
  * Local in-memory data source to store speed limits for customers.
- */
-class SpeedDataSource {
-
-    private val speedLimits: MutableMap<String, Int> = mutableMapOf()
-
-
-/**
- * Local in-memory data source to store speed limits for customers.
  * This class provides methods to set and retrieve speed limits associated with customer IDs.
  * The data is stored in a mutable map, where each key is a customer ID and the value is the corresponding speed limit.
  *
@@ -30,10 +22,6 @@ class SpeedDataSource {
         speedLimits[customerId] = limit
     }
 
-    fun getLimit(customerId: String): Int? {
-        return speedLimits[customerId]
-    }
-}
     /**
      * Retrieves the speed limit for a specific customer.
      *

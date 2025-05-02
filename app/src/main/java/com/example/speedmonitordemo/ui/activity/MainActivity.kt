@@ -7,15 +7,6 @@ import com.example.speedmonitordemo.databinding.ActivityMainBinding
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 
-class MainActivity : AppCompatActivity() {
-
-    // ViewBinding instance
-    private lateinit var binding: ActivityMainBinding
-
-    // ViewModel instance
-    private lateinit var viewModel: MainViewModel
-
-
 /**
  * Main activity for the Speed Monitor app.
  * Handles initialization of the ViewModel, UI binding, and Firebase messaging.
