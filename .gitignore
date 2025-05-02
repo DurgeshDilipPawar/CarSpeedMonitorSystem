@@ -1,0 +1,21 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+# Ignore test classes
+app/src/test/
+app/src/androidTest/
+
+# Ignore launcher icons if you want (not recommended unless replacing)
+app/src/main/res/mipmap-*/ic_launcher*.webp

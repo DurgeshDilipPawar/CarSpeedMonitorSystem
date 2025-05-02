@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.speedmonitordemo">
+
+    <!-- Permissions -->
+<<<<<<< HEAD
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+=======
+    <!-- Permission to access the internet for sending/receiving data -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Permission to access the device's fine location for speed monitoring -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Permission to access the device's coarse location as a fallback -->
+>>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Application Configuration -->
+    <application
+        android:name=".MyApplication"
+        android:label="Speed Monitor Demo"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:label="Speed Monitor Demo"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize">
+
+            <!-- Intent filter to mark the main activity -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Firebase Messaging Service -->
+<<<<<<< HEAD
+=======
+        <!-- Service for receiving Firebase Cloud Messages (e.g., notifications) -->
+>>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
+        <service
+            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Firebase Analytics -->
+<<<<<<< HEAD
+=======
+        <!-- Enables Firebase Analytics to track events and user interactions -->
+>>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
+        <meta-data
+            android:name="com.google.firebase.analytics.APP_MEASUREMENT_ENABLED"
+            android:value="true" />
+
+    </application>
+</manifest>
