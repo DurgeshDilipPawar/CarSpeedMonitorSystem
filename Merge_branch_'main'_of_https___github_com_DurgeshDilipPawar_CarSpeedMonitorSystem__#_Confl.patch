@@ -1,0 +1,363 @@
+Subject: [PATCH] Merge branch 'main' of https://github.com/DurgeshDilipPawar/CarSpeedMonitorSystem
+
+# Conflicts:
+#	app/src/main/AndroidManifest.xml
+#	app/src/main/java/com/example/speedmonitordemo/data/FirebaseMock.kt
+#	app/src/main/java/com/example/speedmonitordemo/data/model/SpeedAlert.kt
+#	app/src/main/java/com/example/speedmonitordemo/data/repository/SpeedMonitorRepository.kt
+#	app/src/main/java/com/example/speedmonitordemo/data/source/SpeedDataSource.kt
+#	app/src/main/java/com/example/speedmonitordemo/domain/SpeedMonitorUseCase.kt
+#	app/src/main/java/com/example/speedmonitordemo/service/FirebaseService.kt
+#	app/src/main/java/com/example/speedmonitordemo/ui/activity/MainActivity.kt
+#	app/src/main/java/com/example/speedmonitordemo/ui/viewmodel/SpeedMonitorViewModel.kt
+#	app/src/main/java/com/example/speedmonitordemo/utils/MyFirebaseMessagingService.kt
+---
+Index: app/src/main/java/com/example/speedmonitordemo/utils/MyFirebaseMessagingService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/utils/MyFirebaseMessagingService.kt b/app/src/main/java/com/example/speedmonitordemo/utils/MyFirebaseMessagingService.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/utils/MyFirebaseMessagingService.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/utils/MyFirebaseMessagingService.kt	(date 1746185425614)
+@@ -4,8 +4,6 @@
+ import com.google.firebase.messaging.FirebaseMessagingService
+ import com.google.firebase.messaging.RemoteMessage
+ 
+-class MyFirebaseMessagingService : FirebaseMessagingService() {
+-
+ /**
+  * Service class for handling Firebase messaging.
+  * This class extends [FirebaseMessagingService] and is responsible for receiving and processing
+@@ -33,7 +31,6 @@
+         }
+     }
+ 
+-
+     /**
+      * Called when a new Firebase token is generated.
+      *
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/AndroidManifest.xml	(date 1746185135739)
+@@ -3,9 +3,16 @@
+     package="com.example.speedmonitordemo">
+ 
+     <!-- Permissions -->
++<<<<<<< HEAD
++    <uses-permission android:name="android.permission.INTERNET" />
++    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
++
++=======
++<<<<<<< HEAD
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+-
++=======
++>>>>>>> ce0bb5f31a4a23095a0074adddd2cfa90867cc9c
+     <!-- Permission to access the internet for sending/receiving data -->
+     <uses-permission android:name="android.permission.INTERNET" />
+ 
+@@ -13,6 +20,10 @@
+     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+ 
+     <!-- Permission to access the device's coarse location as a fallback -->
++<<<<<<< HEAD
++=======
++>>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
++>>>>>>> ce0bb5f31a4a23095a0074adddd2cfa90867cc9c
+     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+ 
+     <!-- Application Configuration -->
+@@ -39,8 +50,15 @@
+         </activity>
+ 
+         <!-- Firebase Messaging Service -->
++<<<<<<< HEAD
+ 
+         <!-- Service for receiving Firebase Cloud Messages (e.g., notifications) -->
++=======
++<<<<<<< HEAD
++=======
++        <!-- Service for receiving Firebase Cloud Messages (e.g., notifications) -->
++>>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
++>>>>>>> ce0bb5f31a4a23095a0074adddd2cfa90867cc9c
+         <service
+             android:name="com.google.firebase.messaging.FirebaseMessagingService"
+             android:exported="false">
+@@ -50,8 +68,15 @@
+         </service>
+ 
+         <!-- Firebase Analytics -->
++<<<<<<< HEAD
+ 
+         <!-- Enables Firebase Analytics to track events and user interactions -->
++=======
++<<<<<<< HEAD
++=======
++        <!-- Enables Firebase Analytics to track events and user interactions -->
++>>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
++>>>>>>> ce0bb5f31a4a23095a0074adddd2cfa90867cc9c
+         <meta-data
+             android:name="com.google.firebase.analytics.APP_MEASUREMENT_ENABLED"
+             android:value="true" />
+Index: app/src/main/java/com/example/speedmonitordemo/ui/activity/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/ui/activity/MainActivity.kt b/app/src/main/java/com/example/speedmonitordemo/ui/activity/MainActivity.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/ui/activity/MainActivity.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/ui/activity/MainActivity.kt	(date 1746185373751)
+@@ -5,16 +5,6 @@
+ import androidx.lifecycle.ViewModelProvider
+ import com.example.speedmonitordemo.databinding.ActivityMainBinding
+ import com.google.firebase.messaging.FirebaseMessaging
+-import com.google.firebase.messaging.FirebaseMessagingService
+-
+-class MainActivity : AppCompatActivity() {
+-
+-    // ViewBinding instance
+-    private lateinit var binding: ActivityMainBinding
+-
+-    // ViewModel instance
+-    private lateinit var viewModel: MainViewModel
+-
+ 
+ /**
+  * Main activity for the Speed Monitor app.
+@@ -41,11 +31,6 @@
+         binding = ActivityMainBinding.inflate(layoutInflater)
+         setContentView(binding.root)
+ 
+-        // Initialize ViewModel
+-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+-
+-        // Example of Firebase messaging to handle notifications
+-
+         // Initialize ViewModel using ViewModelProvider
+         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+ 
+@@ -59,9 +44,6 @@
+                 }
+             }
+ 
+-
+         // Any additional UI setup or listeners can go here
+-
+-        // Additional UI setup or listeners can be added here
+     }
+ }
+Index: app/src/main/java/com/example/speedmonitordemo/service/FirebaseService.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/service/FirebaseService.kt b/app/src/main/java/com/example/speedmonitordemo/service/FirebaseService.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/service/FirebaseService.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/service/FirebaseService.kt	(date 1746185357411)
+@@ -3,13 +3,10 @@
+ import android.util.Log
+ 
+ /**
+- * Simulated service for sending notifications via Firebase.
++ * Service class to handle sending notifications via Firebase.
++ * This is a simulated version and can be replaced with actual Firebase implementation.
+  */
+ class FirebaseService {
+-
+-
+-
+-class FirebaseService {
+ 
+     /**
+      * Sends a notification to the customer if their speed exceeds the defined speed limit.
+@@ -23,4 +20,3 @@
+         Log.d("FirebaseService", "Notification sent to $customerId: speed $speed exceeded limit $limit")
+     }
+ }
+-}
+Index: app/src/main/java/com/example/speedmonitordemo/domain/SpeedMonitorUseCase.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/domain/SpeedMonitorUseCase.kt b/app/src/main/java/com/example/speedmonitordemo/domain/SpeedMonitorUseCase.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/domain/SpeedMonitorUseCase.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/domain/SpeedMonitorUseCase.kt	(date 1746185345981)
+@@ -1,12 +1,5 @@
+ package com.example.speedmonitordemo.domain
+ 
+-class SpeedMonitorUseCase {
+-    fun isSpeedExceeded(userSpeed: Int, speedLimit: Int): Boolean {
+-        return userSpeed > speedLimit
+-    }
+-}
+-
+-
+ /**
+  * Use case class to handle the business logic related to speed monitoring.
+  * It determines if the user's speed exceeds the set speed limit.
+Index: app/src/main/java/com/example/speedmonitordemo/domain/SpeedAlertInterface.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/domain/SpeedAlertInterface.kt b/app/src/main/java/com/example/speedmonitordemo/domain/SpeedAlertInterface.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/domain/SpeedAlertInterface.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/domain/SpeedAlertInterface.kt	(date 1746185580929)
+@@ -1,9 +1,5 @@
+ package com.example.speedmonitordemo.domain
+ 
+-<<<<<<< HEAD
+-class SpeedAlertInterface {
+-}
+-=======
+ /**
+  * Interface defining the contract for sending speed alert notifications.
+  * Implementing classes are responsible for providing the actual logic for sending the alerts.
+@@ -17,4 +13,3 @@
+      */
+     fun sendAlert(message: String)
+ }
+->>>>>>> ffd27ad (feat: initial commit of complete Android project with MVVM, Firebase, Coroutines, and unit testing setup)
+Index: app/src/main/java/com/example/speedmonitordemo/data/repository/SpeedMonitorRepository.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/data/repository/SpeedMonitorRepository.kt b/app/src/main/java/com/example/speedmonitordemo/data/repository/SpeedMonitorRepository.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/data/repository/SpeedMonitorRepository.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/data/repository/SpeedMonitorRepository.kt	(date 1746185299525)
+@@ -4,7 +4,6 @@
+ import com.example.speedmonitordemo.service.FirebaseService
+ 
+ /**
+- * Repository to abstract access to data source and external services.
+  * Repository to abstract access to data source and external services related to speed monitoring.
+  * It manages interactions with the data layer and communicates with Firebase for alert notifications.
+  *
+@@ -16,7 +15,6 @@
+     private val firebaseService: FirebaseService
+ ) {
+ 
+-
+     /**
+      * Sets the speed limit for a specific customer.
+      *
+@@ -27,7 +25,6 @@
+         dataSource.setLimit(customerId, speedLimit)
+     }
+ 
+-
+     /**
+      * Retrieves the current speed limit for a specific customer.
+      *
+@@ -38,10 +35,6 @@
+         return dataSource.getLimit(customerId)
+     }
+ 
+-    fun sendAlertNotification(customerId: String, speed: Int, limit: Int) {
+-        firebaseService.sendNotification(customerId, speed, limit)
+-    }
+-
+     /**
+      * Sends an alert notification if the customer's speed exceeds the defined speed limit.
+      *
+Index: app/src/main/java/com/example/speedmonitordemo/data/source/SpeedDataSource.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/data/source/SpeedDataSource.kt b/app/src/main/java/com/example/speedmonitordemo/data/source/SpeedDataSource.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/data/source/SpeedDataSource.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/data/source/SpeedDataSource.kt	(date 1746185315293)
+@@ -1,13 +1,5 @@
+ package com.example.speedmonitordemo.data.source
+ 
+-/**
+- * Local in-memory data source to store speed limits for customers.
+- */
+-class SpeedDataSource {
+-
+-    private val speedLimits: MutableMap<String, Int> = mutableMapOf()
+-
+-
+ /**
+  * Local in-memory data source to store speed limits for customers.
+  * This class provides methods to set and retrieve speed limits associated with customer IDs.
+@@ -30,10 +22,6 @@
+         speedLimits[customerId] = limit
+     }
+ 
+-    fun getLimit(customerId: String): Int? {
+-        return speedLimits[customerId]
+-    }
+-}
+     /**
+      * Retrieves the speed limit for a specific customer.
+      *
+Index: app/src/main/java/com/example/speedmonitordemo/ui/viewmodel/SpeedMonitorViewModel.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/ui/viewmodel/SpeedMonitorViewModel.kt b/app/src/main/java/com/example/speedmonitordemo/ui/viewmodel/SpeedMonitorViewModel.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/ui/viewmodel/SpeedMonitorViewModel.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/ui/viewmodel/SpeedMonitorViewModel.kt	(date 1746185392261)
+@@ -11,17 +11,6 @@
+ import kotlinx.coroutines.Job
+ import kotlinx.coroutines.launch
+ 
+-/**
+- * ViewModel for monitoring speed and notifying if the speed exceeds limit.
+- */
+-class SpeedMonitorViewModel(private val repository: SpeedMonitorRepository) : ViewModel() {
+-
+-    private val _speedAlert = MutableLiveData<SpeedAlert?>()
+-    val speedAlert: LiveData<SpeedAlert?> = _speedAlert
+-
+-    private val viewModelJob = Job()
+-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+-
+ /**
+  * ViewModel for monitoring speed and notifying if the speed exceeds the limit.
+  * It interacts with the repository to fetch the speed limit and sends notifications
+@@ -51,10 +40,6 @@
+         repository.setSpeedLimit(customerId, speedLimit)
+     }
+ 
+-    fun checkSpeed(customerId: String, currentSpeed: Int) {
+-        uiScope.launch {
+-            val limit = repository.getSpeedLimit(customerId)
+-            if (limit != null && currentSpeed > limit) {
+     /**
+      * Checks if the current speed exceeds the speed limit for a specific customer.
+      * If exceeded, it sends an alert and updates the [speedAlert] LiveData.
+Index: app/src/main/java/com/example/speedmonitordemo/data/FirebaseMock.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/speedmonitordemo/data/FirebaseMock.kt b/app/src/main/java/com/example/speedmonitordemo/data/FirebaseMock.kt
+--- a/app/src/main/java/com/example/speedmonitordemo/data/FirebaseMock.kt	(revision 526fdb4f49c29c85283e55bd3ad32b64778b035b)
++++ b/app/src/main/java/com/example/speedmonitordemo/data/FirebaseMock.kt	(date 1746185334357)
+@@ -1,7 +1,5 @@
+ package com.example.speedmonitordemo.data
+ 
+-class FirebaseMock {
+-
+ /**
+  * Mock class to simulate the behavior of a Firebase notification service.
+  * This is a mock implementation intended for testing purposes, simulating the sending of notifications.
+@@ -21,5 +19,3 @@
+         println("Notification Sent: $message")
+     }
+ }
+-
+-}
