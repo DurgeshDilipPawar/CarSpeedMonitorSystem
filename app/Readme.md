@@ -79,3 +79,38 @@ SpeedMonitorDemo
 │   │   │           └── ic_launcher.png               # App icon
 │   └── build.gradle.kts
 └── build.gradle.kts
+
+
+
+############# Car Rental Speed Limit Monitoring Sequence ##########
+
+Participants:
+Fleet Manager
+Backend (Firebase/AWS)
+Car API Library/ Car IVI System (Android App)
+Driver
+Notification System
+
+
+[ Fleet Manager App / Dashboard ]
+           |
+        (Set speed limit per car)
+           |
+     [ Firebase / AWS Backend ]
+           |
+        (Push speed limit config)
+           |
+   [ Car IVI System (Android App) ]
+           |
+        (Update speed limit locally)
+           |
+     <--- Speed Check Loop --->
+           |
+   [ Car API Library]
+           |
+   (Fetch vehicle speed continuously)
+           |
+      |-- If overspeed --|
+           ↓
+[ Driver UI ]     [ Push Notification Service ]
+    (Alert)         (Notify Fleet Manager)
