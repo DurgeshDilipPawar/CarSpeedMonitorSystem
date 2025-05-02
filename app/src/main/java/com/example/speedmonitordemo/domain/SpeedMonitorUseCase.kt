@@ -1,12 +1,5 @@
 package com.example.speedmonitordemo.domain
 
-class SpeedMonitorUseCase {
-    fun isSpeedExceeded(userSpeed: Int, speedLimit: Int): Boolean {
-        return userSpeed > speedLimit
-    }
-}
-
-
 /**
  * Use case class to handle the business logic related to speed monitoring.
  * It determines if the user's speed exceeds the set speed limit.

@@ -7,10 +7,6 @@ import android.util.Log
  */
 class FirebaseService {
 
-
-
-class FirebaseService {
-
     /**
      * Sends a notification to the customer if their speed exceeds the defined speed limit.
      *
@@ -22,5 +18,4 @@ class FirebaseService {
         // Replace with actual Firebase implementation
         Log.d("FirebaseService", "Notification sent to $customerId: speed $speed exceeded limit $limit")
     }
-}
 }

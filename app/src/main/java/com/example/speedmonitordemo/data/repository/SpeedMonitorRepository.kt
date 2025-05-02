@@ -27,7 +27,6 @@ class SpeedMonitorRepository(
         dataSource.setLimit(customerId, speedLimit)
     }
 
-
     /**
      * Retrieves the current speed limit for a specific customer.
      *
@@ -36,10 +35,6 @@ class SpeedMonitorRepository(
      */
     fun getSpeedLimit(customerId: String): Int? {
         return dataSource.getLimit(customerId)
-    }
-
-    fun sendAlertNotification(customerId: String, speed: Int, limit: Int) {
-        firebaseService.sendNotification(customerId, speed, limit)
     }
 
     /**

@@ -12,17 +12,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /**
- * ViewModel for monitoring speed and notifying if the speed exceeds limit.
- */
-class SpeedMonitorViewModel(private val repository: SpeedMonitorRepository) : ViewModel() {
-
-    private val _speedAlert = MutableLiveData<SpeedAlert?>()
-    val speedAlert: LiveData<SpeedAlert?> = _speedAlert
-
-    private val viewModelJob = Job()
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-
-/**
  * ViewModel for monitoring speed and notifying if the speed exceeds the limit.
  * It interacts with the repository to fetch the speed limit and sends notifications
  * if the speed exceeds the limit.
@@ -55,42 +44,45 @@ class SpeedMonitorViewModel(private val repository: SpeedMonitorRepository) : Vi
         uiScope.launch {
             val limit = repository.getSpeedLimit(customerId)
             if (limit != null && currentSpeed > limit) {
-    /**
-     * Checks if the current speed exceeds the speed limit for a specific customer.
-     * If exceeded, it sends an alert and updates the [speedAlert] LiveData.
-     *
-     * @param customerId The ID of the customer.
-     * @param currentSpeed The current speed of the vehicle.
-     */
-    fun checkSpeed(customerId: String, currentSpeed: Int) {
-        uiScope.launch {
-            // Get the speed limit from the repository
-            val limit = repository.getSpeedLimit(customerId)
+                /**
+                 * Checks if the current speed exceeds the speed limit for a specific customer.
+                 * If exceeded, it sends an alert and updates the [speedAlert] LiveData.
+                 *
+                 * @param customerId The ID of the customer.
+                 * @param currentSpeed The current speed of the vehicle.
+                 */
+                fun checkSpeed(customerId: String, currentSpeed: Int) {
+                    uiScope.launch {
+                        // Get the speed limit from the repository
+                        val limit = repository.getSpeedLimit(customerId)
 
-            // Check if the current speed exceeds the limit
-            if (limit != null && currentSpeed > limit) {
-                // Create a new SpeedAlert object and update LiveData
-                _speedAlert.value = SpeedAlert(
-                    customerId = customerId,
-                    currentSpeed = currentSpeed,
-                    limit = limit,
-                    message = "Speed limit exceeded!"
-                )
+                        // Check if the current speed exceeds the limit
+                        if (limit != null && currentSpeed > limit) {
+                            // Create a new SpeedAlert object and update LiveData
+                            _speedAlert.value = SpeedAlert(
+                                customerId = customerId,
+                                currentSpeed = currentSpeed,
+                                limit = limit,
+                                message = "Speed limit exceeded!"
+                            )
 
-                // Send notification using repository
-                repository.sendAlertNotification(customerId, currentSpeed, limit)
-            } else {
-                _speedAlert.value = null
+                            // Send notification using repository
+                            repository.sendAlertNotification(customerId, currentSpeed, limit)
+                        } else {
+                            _speedAlert.value = null
+                        }
+                    }
+                }
+
+                /**
+                 * Cancels the ongoing coroutines when the ViewModel is cleared.
+                 * This helps to avoid memory leaks by canceling background work.
+                 */
+                override fun onCleared() {
+                    super.onCleared()
+                    viewModelJob.cancel()
+                }
             }
         }
-    }
-
-    /**
-     * Cancels the ongoing coroutines when the ViewModel is cleared.
-     * This helps to avoid memory leaks by canceling background work.
-     */
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 }
